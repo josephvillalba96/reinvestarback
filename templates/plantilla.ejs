@@ -98,7 +98,7 @@
             <!-- Header -->
             <tr>
               <td class="header-logo">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAABDCAYAAACx+Z+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAACQvSURBVHhe7d2J+23VGAfw/hTznMhVKUTKWMmYUlRESoUyRZlKKkqGkrEUaSClSXRJRKKESOQmaTL... (recorta aquí para el edit, pero en el archivo real va TODO el base64 entre los tags) ..." alt="REINVESTAR Capital Group" />
+                <img src="<%= logo %>" alt="Logo" width="200">
               </td>
               <td class="header-info">
                 <table cellpadding="0" cellspacing="0" border="0" style="width: 100%">
@@ -210,16 +210,16 @@
               <!-- Columna derecha -->
               <td style="vertical-align: top; width: 48%; padding-left: 3px">
                 <!-- Loan Summary -->
-                <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">LOAN SUMMARY</td></tr>
-                  <tr><td style="width: 60%">TOTAL LOAN AMOUNT</td><td style="width: 40%; text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="totalLoanAmount"><%= typeof solicitud.totalLoanAmount === 'number' ? solicitud.totalLoanAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.totalLoanAmount %></span></td></tr>
-                  <tr><td>ANNUAL INTEREST RATE</td><td><span id="interestRate"><%= solicitud.interestRate %></span>%</td></tr>
-                  <tr><td>REQUESTED LEVERAGE</td><td><span id="requestedLeverage"><%= solicitud.requestedLeverage %></span>%</td></tr>
-                  <tr><td>APPROX. MONTHLY INTEREST PAYMENT</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="monthlyInterest"><%= typeof solicitud.monthlyInterest === 'number' ? solicitud.monthlyInterest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.monthlyInterest %></span></td></tr>
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">IF LOAN IS FIX & FLIP OR GROUND UP CONSTRUCTION</td></tr>
-                  <tr><td style="width: 60%">CONSTRUCTION HOLDBACK</td><td style="width: 40%; text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="constructionHoldback"><%= typeof solicitud.constructionHoldback === 'number' ? solicitud.constructionHoldback.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.constructionHoldback %></span></td></tr>
-                  <tr><td>INITIAL FUNDING</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="initialFunding"><%= typeof solicitud.initialFunding === 'number' ? solicitud.initialFunding.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.initialFunding %></span></td></tr>
-                  <tr><td>DAY 1 APPROX. MONTHLY INTEREST PAYMENT</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="day1Interest"><%= typeof solicitud.day1Interest === 'number' ? solicitud.day1Interest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.day1Interest %></span></td></tr>
+                <table class="money-table" cellpadding="2" cellspacing="0" border="0" style="width: 100%;">
+                  <tr class="section-title"><td colspan="2">LOAN SUMMARY</td></tr>
+                  <tr><td class="label">TOTAL LOAN AMOUNT</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.totalLoanAmount === 'number' ? solicitud.totalLoanAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.totalLoanAmount %></span></td></tr>
+                  <tr><td class="label">ANNUAL INTEREST RATE</td><td><span id="interestRate"><%= solicitud.interestRate %></span>%</td></tr>
+                  <tr><td class="label">REQUESTED LEVERAGE</td><td><span id="requestedLeverage"><%= solicitud.requestedLeverage %></span>%</td></tr>
+                  <tr><td class="label">APPROX. MONTHLY INTEREST PAYMENT</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.monthlyInterest === 'number' ? solicitud.monthlyInterest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.monthlyInterest %></span></td></tr>
+                  <tr class="section-title"><td colspan="2">IF LOAN IS FIX & FLIP OR GROUND UP CONSTRUCTION</td></tr>
+                  <tr><td class="label">CONSTRUCTION HOLDBACK</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.constructionHoldback === 'number' ? solicitud.constructionHoldback.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.constructionHoldback %></span></td></tr>
+                  <tr><td class="label">INITIAL FUNDING</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.initialFunding === 'number' ? solicitud.initialFunding.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.initialFunding %></span></td></tr>
+                  <tr><td class="label">DAY 1 APPROX. MONTHLY INTEREST PAYMENT</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.day1Interest === 'number' ? solicitud.day1Interest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.day1Interest %></span></td></tr>
                 </table>
                 <div style="height: 6px"></div>
                 <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
