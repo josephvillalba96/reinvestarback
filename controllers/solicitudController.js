@@ -1,6 +1,7 @@
 const Solicitud = require('../models/solicitud');
 const ejs = require('ejs');
 const path = require('path');
+const fs = require('fs');
 // const pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
 
@@ -44,9 +45,13 @@ exports.descargarSolicitud = async (req, res) => {
     const solicitud = await Solicitud.findById(req.params.id);
     if (!solicitud) return res.status(404).json({ error: 'Solicitud no encontrada' });
 
+    // Leer el logo base64 desde el archivo
+    const logoBase64 = fs.readFileSync(path.join(__dirname, '../logo_base64.txt'), 'utf8').replace(/(\r|\n)/g, '');
+    const logo = `data:image/png;base64,${logoBase64}`;
+
     // Renderiza el HTML desde la plantilla EJS
     const htmlPath = path.join(__dirname, '../templates/plantilla.ejs');
-    const htmlContent = await ejs.renderFile(htmlPath, { solicitud });
+    const htmlContent = await ejs.renderFile(htmlPath, { solicitud, logo });
 
     // Lanza el navegador (usa --no-sandbox en servidores sin entorno gráfico)
     const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
