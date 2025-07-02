@@ -1,7 +1,8 @@
 const Solicitud = require('../models/solicitud');
 const ejs = require('ejs');
 const path = require('path');
-const pdf = require('html-pdf');
+// const pdf = require('html-pdf');
+const puppeteer = require('puppeteer');
 
 // Crear solicitud
 exports.crearSolicitud = async (req, res) => {
@@ -37,45 +38,51 @@ exports.listarSolicitudes = async (req, res) => {
 };
 
 
+
 exports.descargarSolicitud = async (req, res) => {
   try {
     const solicitud = await Solicitud.findById(req.params.id);
     if (!solicitud) return res.status(404).json({ error: 'Solicitud no encontrada' });
 
+    // Renderiza el HTML desde la plantilla EJS
     const htmlPath = path.join(__dirname, '../templates/plantilla.ejs');
     const htmlContent = await ejs.renderFile(htmlPath, { solicitud });
 
-    const options = {
-      format: 'letter', 
-      border: {
+    // Lanza el navegador (usa --no-sandbox en servidores sin entorno gráfico)
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+    const page = await browser.newPage();
+
+    // Establece el contenido de la página
+    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+    // Genera el PDF
+    const pdfBuffer = await page.pdf({
+      format: 'letter',
+      printBackground: true,
+      margin: {
         top: '5mm',
         bottom: '5mm',
         left: '5mm',
-        right: '5mm'
+        right: '5mm',
       },
-    //   height: '14in',
-    //   width: '8.5in'
-    };
-
-    pdf.create(htmlContent, options).toBuffer((err, buffer) => {
-      if (err) {
-        console.error('Error generando PDF:', err);
-        return res.status(500).json({ error: 'Error al generar el PDF' });
-      }
-
-      res.set({
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="solicitud-${solicitud._id}.pdf"`
-      });
-
-      res.send(buffer);
     });
 
+    await browser.close();
+
+    // Configura las cabeceras y envía el PDF
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename="solicitud-${solicitud._id}.pdf"`,
+    });
+
+    res.send(pdfBuffer);
+
   } catch (error) {
-    console.error(error);
+    console.error('Error generando PDF con Puppeteer:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
 
 const ExcelJS = require('exceljs');
 
