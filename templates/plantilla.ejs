@@ -4,19 +4,101 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reinvestar</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+        line-height: 1.3;
+        background: #f8f8f8;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      .main-table {
+        background: #fff;
+        box-shadow: 0 2px 8px #0001;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .header-logo {
+        padding-right: 8px;
+        width: 35%;
+        vertical-align: middle;
+      }
+      .header-logo img {
+        display: block;
+        margin: 0 auto;
+        max-width: 180px;
+        height: auto;
+      }
+      .header-info {
+        background-color: #ffc55a;
+        padding: 8px;
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+      .section-title {
+        background-color: #ffc55a;
+        font-weight: bold;
+        text-align: center;
+        font-size: 11px;
+        padding: 6px 0;
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+      .money-table td {
+        padding: 2px 6px;
+        font-size: 10px;
+      }
+      .money-table .label {
+        text-align: left;
+        width: 60%;
+      }
+      .money-table .money {
+        text-align: right;
+        width: 40%;
+        white-space: nowrap;
+      }
+      .money-table .money .dollar {
+        display: inline-block;
+        width: 16px;
+        text-align: right;
+        font-weight: bold;
+      }
+      .money-table .money .amount {
+        display: inline-block;
+        min-width: 60px;
+        text-align: right;
+      }
+      .signature-table td {
+        padding: 4px 6px;
+      }
+      .footer {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        font-size: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+    </style>
   </head>
-  <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; font-size: 9px; line-height: 1.1;">
+  <body>
     <table cellpadding="0" cellspacing="0" border="0" style="width: 100%">
       <tr>
         <td align="center">
           <!-- Contenedor principal -->
-          <table cellpadding="0" cellspacing="0" border="0" style="width: 750px; max-width: 100%; font-size: 9px; line-height: 1.1;">
+          <table class="main-table" cellpadding="0" cellspacing="0" border="0" style="width: 750px; max-width: 100%;">
             <!-- Header -->
             <tr>
-              <td style="padding-right: 8px; width: 35%">
-                <img src="/assets/logo.png" alt="REINVESTAR Capital Group" style="width: 100%; max-width: 200px" />
+              <td class="header-logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAABDCAYAAACx+Z+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAACQvSURBVHhe7d2J+23VGAfw/hTznMhVKUTKWMmYUlRESoUyRZlKKkqGkrEUaSClSXRJRKKESOQmaTL... (recorta aquí para el edit, pero en el archivo real va TODO el base64 entre los tags) ..." alt="REINVESTAR Capital Group" />
               </td>
-              <td style="background-color: #ffc55a; padding: 5px; border: 1px solid #000;">
+              <td class="header-info">
                 <table cellpadding="0" cellspacing="0" border="0" style="width: 100%">
                   <tr>
                     <td>
@@ -37,7 +119,7 @@
             <tr><td colspan="2" style="height: 10px"></td></tr>
             <!-- Título -->
             <tr>
-              <td colspan="2" style="background-color: #ffc55a; text-align: center; font-weight: bold; font-size: 10px; padding: 8px; border: 1px solid #000;">LETTER OF INTENT FOR SHORT TERM LOAN</td>
+              <td colspan="2" class="section-title">LETTER OF INTENT FOR SHORT TERM LOAN</td>
             </tr>
             <!-- Espaciado -->
             <tr><td colspan="2" style="height: 8px"></td></tr>
@@ -47,82 +129,80 @@
               <td style="vertical-align: top; width: 48%; padding-right: 3px">
                 <!-- Borrower Info -->
                 <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">BORROWER INFORMATION</td></tr>
-                  <tr><td style="width: 60%">BORROWER INFORMATION</td><td style="width: 40%"><span id="borrowerName"><%= solicitud.borrowerName %></span></td></tr>
-                  <tr><td>LEGAL STATUS</td><td><span id="legalStatus"><%= solicitud.legalStatus %></span></td></tr>
-                  <tr><td>ISSUED DATE</td><td><span id="issuedDate"><%= solicitud.issuedDate %></span></td></tr>
-                  <tr><td>SUBJECT PROPERTY ADDRESS</td><td><span id="propertyAddress"><%= solicitud.propertyAddress %></span></td></tr>
-                  <tr><td>ESTIMATED FICO SCORE</td><td><span id="ficoScore"><%= solicitud.ficoScore %></span></td></tr>
+                  <tr class="section-title"><td colspan="2">BORROWER INFORMATION</td></tr>
+                  <tr><td class="label">BORROWER INFORMATION</td><td><span id="borrowerName"><%= solicitud.borrowerName %></span></td></tr>
+                  <tr><td class="label">LEGAL STATUS</td><td><span id="legalStatus"><%= solicitud.legalStatus %></span></td></tr>
+                  <tr><td class="label">ISSUED DATE</td><td><span id="issuedDate"><%= solicitud.issuedDate %></span></td></tr>
+                  <tr><td class="label">SUBJECT PROPERTY ADDRESS</td><td><span id="propertyAddress"><%= solicitud.propertyAddress %></span></td></tr>
+                  <tr><td class="label">ESTIMATED FICO SCORE</td><td><span id="ficoScore"><%= solicitud.ficoScore %></span></td></tr>
                 </table>
                 <div style="height: 8px"></div>
                 <!-- Loan Details -->
                 <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">LOAN DETAILS</td></tr>
-                  <tr><td style="width: 60%">LOAN TYPE</td><td style="width: 40%"><span id="loanType"><%= solicitud.loanType %></span></td></tr>
-                  <tr><td>PROPERTY TYPE</td><td><span id="propertyType"><%= solicitud.propertyType %></span></td></tr>
-                  <tr><td>ESTIMATED CLOSING DATE</td><td><span id="closingDate"><%= solicitud.closingDate %></span></td></tr>
-                  <tr><td>INTEREST RATE STRUCTURE</td><td><span id="interestStructure"><%= solicitud.interestStructure %></span></td></tr>
-                  <tr><td>LOAN TERM</td><td><span id="loanTerm"><%= solicitud.loanTerm %></span> months</td></tr>
-                  <tr><td>PREPAYMENT PENALTY</td><td><span id="prepaymentPenalty"><%= solicitud.prepaymentPenalty %></span></td></tr>
-                  <tr><td>MAXIMUM LTV</td><td><span id="maxLTV"><%= solicitud.maxLTV %></span>%</td></tr>
-                  <tr><td>MAXIMUM LTC</td><td><span id="maxLTC"><%= solicitud.maxLTC %></span>%</td></tr>
+                  <tr class="section-title"><td colspan="2">LOAN DETAILS</td></tr>
+                  <tr><td class="label">LOAN TYPE</td><td><span id="loanType"><%= solicitud.loanType %></span></td></tr>
+                  <tr><td class="label">PROPERTY TYPE</td><td><span id="propertyType"><%= solicitud.propertyType %></span></td></tr>
+                  <tr><td class="label">ESTIMATED CLOSING DATE</td><td><span id="closingDate"><%= solicitud.closingDate %></span></td></tr>
+                  <tr><td class="label">INTEREST RATE STRUCTURE</td><td><span id="interestStructure"><%= solicitud.interestStructure %></span></td></tr>
+                  <tr><td class="label">LOAN TERM</td><td><span id="loanTerm"><%= solicitud.loanTerm %></span> months</td></tr>
+                  <tr><td class="label">PREPAYMENT PENALTY</td><td><span id="prepaymentPenalty"><%= solicitud.prepaymentPenalty %></span></td></tr>
+                  <tr><td class="label">MAXIMUM LTV</td><td><span id="maxLTV"><%= solicitud.maxLTV %></span>%</td></tr>
+                  <tr><td class="label">MAXIMUM LTC</td><td><span id="maxLTC"><%= solicitud.maxLTC %></span>%</td></tr>
                 </table>
                 <div style="height: 8px"></div>
                 <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">TRANSACTION SUMMARY</td></tr>
+                  <tr class="section-title"><td colspan="2">TRANSACTION SUMMARY</td></tr>
                 </table>
                 <div style="height: 8px"></div>
-                <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">PURCHASE, REFINANCE, CASH-OUT</td></tr>
-                  <tr><td style="width: 60%">As-is Value</td><td style="width: 40%; text-align: right;"><span id="asIsValue"><%= typeof solicitud.asIsValue === 'number' ? ('$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + solicitud.asIsValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})) : solicitud.asIsValue %></span></td></tr>
-                  <tr><td>Original Acquisition Price</td><td style="text-align: right;"><span id="acquisitionPrice"><%= typeof solicitud.acquisitionPrice === 'number' ? ('$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + solicitud.acquisitionPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})) : solicitud.acquisitionPrice %></span></td></tr>
+                <!-- PURCHASE, REFINANCE, CASH-OUT -->
+                <table class="money-table" cellpadding="2" cellspacing="0" border="0" style="width: 100%;">
+                  <tr class="section-title"><td colspan="2">PURCHASE, REFINANCE, CASH-OUT</td></tr>
+                  <tr><td class="label">As-is Value</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.asIsValue === 'number' ? solicitud.asIsValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.asIsValue %></span></td></tr>
+                  <tr><td class="label">Original Acquisition Price</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.acquisitionPrice === 'number' ? solicitud.acquisitionPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.acquisitionPrice %></span></td></tr>
                 </table>
                 <div style="height: 8px"></div>
                 <!-- FIX & FLIP, GROUND UP CONSTRUCTION -->
-                <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">FIX & FLIP, GROUND UP CONSTRUCTION</td></tr>
-                  <tr><td style="width: 60%">Land or Acquisition Cost</td><td style="width: 40%; text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="landCost"><%= typeof solicitud.landCost === 'number' ? solicitud.landCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.landCost %></span></td></tr>
-                  <tr><td>Financed Construction / Rehab Budget</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="constructionBudget"><%= typeof solicitud.constructionBudget === 'number' ? solicitud.constructionBudget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.constructionBudget %></span></td></tr>
-                  <tr><td>Total Cost</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="totalCost"><%= typeof solicitud.totalCost === 'number' ? solicitud.totalCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.totalCost %></span></td></tr>
-                  <tr><td>Estimated After Completion Value</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="afterCompletionValue"><%= typeof solicitud.afterCompletionValue === 'number' ? solicitud.afterCompletionValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.afterCompletionValue %></span></td></tr>
+                <table class="money-table" cellpadding="2" cellspacing="0" border="0" style="width: 100%;">
+                  <tr class="section-title"><td colspan="2">FIX & FLIP, GROUND UP CONSTRUCTION</td></tr>
+                  <tr><td class="label">Land or Acquisition Cost</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.landCost === 'number' ? solicitud.landCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.landCost %></span></td></tr>
+                  <tr><td class="label">Financed Construction / Rehab Budget</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.constructionBudget === 'number' ? solicitud.constructionBudget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.constructionBudget %></span></td></tr>
+                  <tr><td class="label">Total Cost</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.totalCost === 'number' ? solicitud.totalCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.totalCost %></span></td></tr>
+                  <tr><td class="label">Estimated After Completion Value</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.afterCompletionValue === 'number' ? solicitud.afterCompletionValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.afterCompletionValue %></span></td></tr>
                 </table>
                 <div style="height: 8px"></div>
                 <!-- LOAN CLOSING COSTS -->
-                <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">LOAN CLOSING COSTS</td></tr>
-                  <tr><td style="width: 60%">Fee</td><td style="width: 40%"><span id="feePercent"><%= solicitud.feePercent %></span>%</td></tr>
-                  <tr><td>Origination Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="originationFee"><%= typeof solicitud.originationFee === 'number' ? solicitud.originationFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.originationFee %></span></td></tr>
-                  <tr><td>Underwriting Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="underwritingFee"><%= typeof solicitud.underwritingFee === 'number' ? solicitud.underwritingFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.underwritingFee %></span></td></tr>
-                  <tr><td>Processing Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="processingFee"><%= typeof solicitud.processingFee === 'number' ? solicitud.processingFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.processingFee %></span></td></tr>
-                  <tr><td>Servicing Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="servicingFee"><%= typeof solicitud.servicingFee === 'number' ? solicitud.servicingFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.servicingFee %></span></td></tr>
-                  <tr><td>Legal Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="legalFee"><%= typeof solicitud.legalFee === 'number' ? solicitud.legalFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.legalFee %></span></td></tr>
-                  <tr><td>Appraisal Fee</td><td><span id="appraisalFee"><%= solicitud.appraisalFee %></span></td></tr>
-                  <tr><td>Budget review and Permit Validation report</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="budgetReview"><%= typeof solicitud.budgetReview === 'number' ? solicitud.budgetReview.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.budgetReview %></span></td></tr>
+                <table class="money-table" cellpadding="2" cellspacing="0" border="0" style="width: 100%;">
+                  <tr class="section-title"><td colspan="2">LOAN CLOSING COSTS</td></tr>
+                  <tr><td class="label">Fee</td><td><span id="feePercent"><%= solicitud.feePercent %></span>%</td></tr>
+                  <tr><td class="label">Origination Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.originationFee === 'number' ? solicitud.originationFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.originationFee %></span></td></tr>
+                  <tr><td class="label">Underwriting Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.underwritingFee === 'number' ? solicitud.underwritingFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.underwritingFee %></span></td></tr>
+                  <tr><td class="label">Processing Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.processingFee === 'number' ? solicitud.processingFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.processingFee %></span></td></tr>
+                  <tr><td class="label">Servicing Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.servicingFee === 'number' ? solicitud.servicingFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.servicingFee %></span></td></tr>
+                  <tr><td class="label">Legal Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.legalFee === 'number' ? solicitud.legalFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.legalFee %></span></td></tr>
+                  <tr><td class="label">Appraisal Fee</td><td><span id="appraisalFee"><%= solicitud.appraisalFee %></span></td></tr>
+                  <tr><td class="label">Budget review and Permit Validation report</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.budgetReview === 'number' ? solicitud.budgetReview.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.budgetReview %></span></td></tr>
                 </table>
                 <div style="height: 8px"></div>
                 <!-- OTHER EXPENSES (Estimated) -->
-                <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td colspan="2">OTHER EXPENSES (Estimated)</td></tr>
-                  <tr><td style="width: 60%">Fee</td><td style="width: 40%"><span id="brokerFeePercent"><%= solicitud.brokerFeePercent %></span>%</td></tr>
-                  <tr><td>Broker Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="brokerFee"><%= typeof solicitud.brokerFee === 'number' ? solicitud.brokerFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.brokerFee %></span></td></tr>
-                  <tr><td>Transaction Fee</td><td style="text-align: right;">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="transactionFee"><%= typeof solicitud.transactionFee === 'number' ? solicitud.transactionFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.transactionFee %></span></td></tr>
+                <table class="money-table" cellpadding="2" cellspacing="0" border="0" style="width: 100%;">
+                  <tr class="section-title"><td colspan="2">OTHER EXPENSES (Estimated)</td></tr>
+                  <tr><td class="label">Fee</td><td><span id="brokerFeePercent"><%= solicitud.brokerFeePercent %></span>%</td></tr>
+                  <tr><td class="label">Broker Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.brokerFee === 'number' ? solicitud.brokerFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.brokerFee %></span></td></tr>
+                  <tr><td class="label">Transaction Fee</td><td class="money"><span class="dollar">$</span><span class="amount"><%= typeof solicitud.transactionFee === 'number' ? solicitud.transactionFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : solicitud.transactionFee %></span></td></tr>
                 </table>
                 <div style="height: 8px"></div>
                 <!-- OTHER EXPENSES (Estimated) -->
                 <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
                   <tr style="background-color: #000; font-weight: bold; text-align: start;"><td style="color: #fff; width: 70%">All terms subject to confirmation including but</td></tr>
-                  <!-- Espaciado -->
-                  <tr><td style="height: 5px"></td><td style="height: 5px"></td></tr>
-                  <tr><td style="height: 5px"></td><td style="height: 5px"></td></tr>
-                  <tr><td style="height: 5px"></td><td style="height: 5px"></td></tr>
+                  <tr><td style="height: 5px"></td></tr>
                 </table>
                 <div style="height: 8px"></div>
-                <!-- OTHER EXPENSES (Estimated) -->
-                <table cellpadding="2" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse">
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td style="width: 60%">BORROWER SIGNATURE:</td><td style="width: 40%"><span id="borrowerSignature"><%= solicitud.borrowerSignature %></span></td></tr>
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td>BORROWER NAME:</td><td><span id="borrowerNameSignature"><%= solicitud.borrowerNameSignature %></span></td></tr>
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td>ENTITY NAME:</td><td><span id="entityName"><%= solicitud.entityName %></span></td></tr>
-                  <tr style="background-color: #ffc55a; font-weight: bold; text-align: center;"><td>DATE:</td><td><span id="date"><%= solicitud.date %></span></td></tr>
+                <!-- SIGNATURES -->
+                <table class="signature-table" cellpadding="2" cellspacing="0" border="0" style="width: 100%;">
+                  <tr class="section-title"><td style="width: 60%">BORROWER SIGNATURE:</td><td style="width: 40%"><span id="borrowerSignature"><%= solicitud.borrowerSignature %></span></td></tr>
+                  <tr class="section-title"><td>BORROWER NAME:</td><td><span id="borrowerNameSignature"><%= solicitud.borrowerNameSignature %></span></td></tr>
+                  <tr class="section-title"><td>ENTITY NAME:</td><td><span id="entityName"><%= solicitud.entityName %></span></td></tr>
+                  <tr class="section-title"><td>DATE:</td><td><span id="date"><%= solicitud.date %></span></td></tr>
                 </table>
               </td>
               <!-- Columna derecha -->
